@@ -1,4 +1,5 @@
 import { Noto_Sans_JP } from 'next/font/google';
+import './globals.css';
 
 const NotoSansJP = Noto_Sans_JP({
   weight: ["400", "700"],
