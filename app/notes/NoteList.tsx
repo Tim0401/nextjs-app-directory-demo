@@ -36,7 +36,7 @@ const NoteItem: React.FC<NoteProps> = ({ item }) => {
           </svg>
         </span>
       </Link>
-      <Link href={`/notes`} prefetch={false}>
+      <Link href={`/notes/${item.id}`} prefetch={false}>
         <h3 className="text-pink-500 hover:text-pink-700 text-lg md:text-xl font-semibold mb-3 break-all underline underline-offset-2">{item.title}</h3>
       </Link>
       <p className="text-gray-500 break-all">{item.body}</p>
