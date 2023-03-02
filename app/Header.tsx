@@ -17,7 +17,7 @@ const Header: React.FC = () => {
 
           <nav className="hidden lg:flex gap-12">
             <Link href="/notes" className="text-gray-600 hover:text-pink-500 active:text-pink-700 text-lg font-semibold transition duration-100">Memo</Link>
-            <Link href="/" className="text-gray-600 hover:text-pink-500 active:text-pink-700 text-lg font-semibold transition duration-100">FAQ</Link>
+            <Link href="/help/faq" className="text-gray-600 hover:text-pink-500 active:text-pink-700 text-lg font-semibold transition duration-100">FAQ</Link>
             <Link href="/settings" className="text-gray-600 hover:text-pink-500 active:text-pink-700 text-lg font-semibold transition duration-100">Setting</Link>
           </nav>
 
