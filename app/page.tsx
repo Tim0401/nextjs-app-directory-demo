@@ -32,7 +32,7 @@ export default async function Page() {
             </div>
 
             <div className="xl:w-5/12 h-48 lg:h-auto bg-gray-100 overflow-hidden shadow-lg rounded-lg">
-              <Image src={coverPic} loading="lazy" alt="Photo by Fakurian Design" className="w-full h-full object-cover object-center" />
+              <Image src={coverPic} priority alt="Photo by Fakurian Design" className="w-full h-full object-cover object-center" />
             </div>
 
           </section>
