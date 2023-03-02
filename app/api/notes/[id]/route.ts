@@ -17,7 +17,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   const parcedData = zUpsertNote.parse(data);
   const note = await prisma.note.update({
     where: { id: Number(params.id) },
-    data: { title: parcedData.title, body: parcedData.body },
+    data: { title: parcedData.title, body: parcedData.body, updatedAt: new Date() },
   });
   return new NextResponse(null, { status: 204 })
 }
