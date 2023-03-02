@@ -32,7 +32,7 @@ export default async function Page() {
   )
 }
 
-export const getNotes = async () => {
+const getNotes = async () => {
   const res = await fetch(`${apiUrl}/notes`, { cache: 'no-store' });
   const data = await res.json();
   const notes = zNotes.parse(data);
