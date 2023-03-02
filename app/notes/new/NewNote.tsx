@@ -19,7 +19,7 @@ const NewNote: React.FC = () => {
     if (res.ok) {
       const id = z.number().parse(await res.json());
       alert('Note created');
-      router.push(`/notes`);
+      router.push(`/notes/${id}`);
       router.refresh();
     } else {
       alert('Note failed to create');
