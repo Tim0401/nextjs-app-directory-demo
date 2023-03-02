@@ -1,8 +1,16 @@
+import { prisma } from '@/globals/db';
 import Image from 'next/image';
 import Link from 'next/link';
 import coverPic from '../public/cover.jpeg';
+import { zVersion } from './type';
 
-export default function Page() {
+export default async function Page() {
+  const metadata = await prisma.metadata.findUniqueOrThrow({
+    where: {
+      key: "version"
+    }
+  });
+  const version = zVersion.parse(metadata.value);
   return (
     <main>
       <div className="bg-white pb-6 sm:pb-8 lg:pb-12">
@@ -14,7 +22,7 @@ export default function Page() {
 
               <h1 className="text-black-800 text-4xl sm:text-5xl md:text-6xl font-bold mb-8 md:mb-12">Revolutionary way to build the web</h1>
 
-              <p className="lg:w-4/5 text-gray-500 xl:text-lg leading-relaxed mb-4 md:mb-6">Learn about the new features of Next.js 13 through building a note application.</p>
+              <p className="lg:w-4/5 text-gray-500 xl:text-lg leading-relaxed mb-4 md:mb-6">Learn about the new features of Next.js {version} through building a note application.</p>
               <p className="lg:w-4/5 text-gray-500 xl:text-lg leading-relaxed mb-8 md:mb-12">Front-end development will be more fun.</p>
 
               <div className="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-2.5">
