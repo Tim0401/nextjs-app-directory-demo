@@ -15,13 +15,13 @@ const Header: React.FC = () => {
             {title}
           </Link>
 
-          <nav className="hidden lg:flex gap-12">
+          <nav className="hidden md:flex gap-12">
             <Link href="/" className="text-gray-600 hover:text-pink-500 active:text-pink-700 text-lg font-semibold transition duration-100">Memo</Link>
             <Link href="/" className="text-gray-600 hover:text-pink-500 active:text-pink-700 text-lg font-semibold transition duration-100">FAQ</Link>
             <Link href="/" className="text-gray-600 hover:text-pink-500 active:text-pink-700 text-lg font-semibold transition duration-100">Setting</Link>
           </nav>
 
-          <div className="lg:flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-2.5 -ml-8">
+          <div>
             <span className="inline-block focus-visible:ring ring-pink-300 text-gray-500 hover:text-pink-500 active:text-pink-600 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-2 py-3">
               <Suspense fallback={"loading..."}>
                 {/* @ts-expect-error Server Component */}
