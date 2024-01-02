@@ -16,9 +16,23 @@ services:
     volumes:
       - type: bind
         source: .
-        target: /app
+        target: /workdir
     ports:
       - 3000:3000
+
+  db:
+    image: postgres:${POSTGRES_VERSION}
+    container_name: db
+    ports:
+      - ${POSTGRES_PORT}:5432
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - type: volume
+        source: postgresql-data
+        target: /var/lib/postgresql/data
 
   # jaeger:
   #   image: jaegertracing/all-in-one:1.52
@@ -58,3 +72,6 @@ services:
   #   # logging: *logging
   #   # environment:
   #   #   - ENVOY_PORT
+
+volumes:
+  postgresql-data:

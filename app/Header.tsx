@@ -24,7 +24,7 @@ const Header: React.FC = () => {
           <div>
             <span className="inline-block focus-visible:ring ring-pink-300 text-gray-500 hover:text-pink-500 active:text-pink-600 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-2 py-3">
               <Suspense fallback={"loading..."}>
-                {/* @ts-expect-error Server Component */}
+                @ts-expect-error Server Component
                 <Version />
               </Suspense>
             </span>
