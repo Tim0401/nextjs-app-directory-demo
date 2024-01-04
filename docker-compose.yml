@@ -1,0 +1,77 @@
+version: '3.9'
+
+networks:
+  default:
+    name: opentelemetry-demo
+    driver: bridge
+
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: builder
+    command: ["npm", "run", "dev"]
+    volumes:
+      - type: bind
+        source: .
+        target: /workdir
+    ports:
+      - 3000:3000
+
+  db:
+    image: postgres:${POSTGRES_VERSION}
+    container_name: db
+    ports:
+      - ${POSTGRES_PORT}:5432
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - type: volume
+        source: postgresql-data
+        target: /var/lib/postgresql/data
+
+  # jaeger:
+  #   image: jaegertracing/all-in-one:1.52
+  #   container_name: jaeger
+  #   # command:
+  #   #   - "--memory.max-traces=8000"
+  #   #   - "--query.base-path=/jaeger/ui"
+  #   #   - "--prometheus.server-url=http://${PROMETHEUS_ADDR}"
+  #   #   - "--prometheus.query.normalize-calls=true"
+  #   #   - "--prometheus.query.normalize-duration=true"
+  #   # deploy:
+  #   #   resources:
+  #   #     limits:
+  #   #       memory: 300M
+  #   # restart: unless-stopped
+  #   ports:
+  #     - 16686:16686        # Jaeger UI
+  #     - 4317:4317                           # OTLP gRPC default port
+  #   # logging: *logging
+
+  # otelcol:
+  #   image: otel/opentelemetry-collector-contrib:0.91.0
+  #   container_name: otel-col
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 125M
+  #   restart: unless-stopped
+  #   command: [ "--config=/etc/otelcol-config.yml" ]
+  #   volumes:
+  #     - ./otelcollector/otelcol-config.yml:/etc/otelcol-config.yml
+  #   # ports:
+  #     # - 4317          # OTLP over gRPC receiver
+  #     # - 4318:4318          # OTLP over HTTP receiver
+  #   depends_on:
+  #     - jaeger
+  #   # logging: *logging
+  #   # environment:
+  #   #   - ENVOY_PORT
+
+volumes:
+  postgresql-data:
